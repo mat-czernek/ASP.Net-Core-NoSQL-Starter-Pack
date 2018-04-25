@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Cloudant.Models.ContactViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+    <form method="POST">
+        <div class="row">
+            <div class="col-md-2 col-md-offset-1">
+                <div class="form-group">
+                    <label class="control-label">@Html.DisplayNameFor(model => model.FirstName)</label>
+                    <input name="FirstName" class="form-control"/>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="control-label">@Html.DisplayNameFor(model => model.LastName)</label>
+                    <input name="LastName" class="form-control"/>
+                </div> 
+            </div>
+            <div class="col-md-2">
+                <div class="form-group" >
+                    <label class="control-label">@Html.DisplayNameFor(model => model.Email)</label>
+                    <input name="Email" class="form-control"/>
+                </div> 
+            </div>
+            <div class="col-md-2">
+                <div class="form-group" >
+            
+                    <br>
+                    <input type="submit" asp-action="Create" value="Create new entry" class="btn btn-default" />
+                    
+                </div> 
+            </div>
+        </div>
+    </form>
+    <hr>
+
+    @foreach (var item in Model) {
+
+    <form method="POST">
+        <div class="row">
+            <div class="col-md-2 col-md-offset-1">
+                <div class="form-group">
+                    <label class="control-label">@Html.DisplayNameFor(model => model.FirstName)</label>
+                    <input name="FirstName" class="form-control"  value="@Html.DisplayFor(modelItem => item.FirstName)"/>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="control-label">@Html.DisplayNameFor(model => model.LastName)</label>
+                    <input name="LastName" class="form-control"  value="@Html.DisplayFor(modelItem => item.LastName)"/>
+                </div> 
+            </div>
+            <div class="col-md-2">
+                <div class="form-group" >
+                    <label class="control-label">@Html.DisplayNameFor(model => model.Email)</label>
+                    <input name="Email" class="form-control"  value="@Html.DisplayFor(modelItem => item.Email)"/>
+                </div> 
+            </div>
+            <div class="col-md-2">
+                <div class="form-group" >
+            
+                    <label>Options</label><br>
+                    <input type="submit" asp-action="Update" value="Update" class="btn btn-default" />
+                    <input type="submit" asp-action="Delete" value="Delete" class="btn btn-default" />
+                    
+                </div> 
+            </div>
+            <div class="col-md-2" style="width:100px;">
+                <div class="form-group" >
+                    <br>
+                    <input type="hidden" name="Id" value="@Html.DisplayFor(modelItem => item.Id)"/>
+                    <input type="hidden" name="Rev" value="@Html.DisplayFor(modelItem => item.Rev)"/>
+                </div> 
+            </div>
+        </div>
+
+        <hr>
+    </form>
+    }
+
+
